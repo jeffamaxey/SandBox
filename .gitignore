@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 
 /mats-site/.env.*
+/mats-site/web/staticfiles/
+/mats-site/web/mediafiles/
+
