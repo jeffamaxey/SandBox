@@ -197,3 +197,23 @@ def test_update_simulationparameters_invalid_json_keys(client, add_simulationpar
         content_type="application/json",
     )
     assert resp.status_code == 400
+
+
+@pytest.mark.django_db
+def test_generate_scenario(client):
+
+    resp = client.post(
+        "/api/scenario_generator/",
+        {
+            "name": "alm18",
+            "headers": "['AK_SV', 'AK_WORLD']",
+            "corr": "[[1.0, 0.82],[0.82, 1.0]]",
+            "s0": "[22, 59]",
+            "ar": "[0.0, 0.0]",
+            "mu": "[0.09,0.07]",
+            "sigma": "[0.16, 0.12]"
+        },
+        content_type="application/json"
+    )
+    assert resp.status_code == 201
+    assert resp.data == "[[1.0, 0.82], [1.0, 0.82], [1.0, 0.82], [1.0, 0.82]]"

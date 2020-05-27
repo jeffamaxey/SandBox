@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from .validators import validate_symmetric
 
 
 class CustomUser(AbstractUser):
@@ -15,7 +16,7 @@ class SimulationParameters(models.Model):
     ar = models.CharField(max_length=1000, default='null')  # Speed of reversion in Vasicek
     mu = models.CharField(max_length=1000)  # Array Mean returns (yearly)
     sigma = models.CharField(max_length=1000)  # Array Mean returns (yearly)
-    corr = models.CharField(max_length=10000)  # Array Correlation
+    corr = models.CharField(max_length=10000, validators=[validate_symmetric])  # Array Correlation
 
     def __str__(self):
         return f"{self.name}"

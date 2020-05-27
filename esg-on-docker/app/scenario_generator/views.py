@@ -1,7 +1,9 @@
 from .models import SimulationParameters
 from .serializers import SimulationParametersSerializer
-from django.http import Http404
+import numpy as np
+import json
 
+from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -63,3 +65,25 @@ class SimulationParametersDetail(APIView):
         simulationparameter = self.get_object(pk)
         simulationparameter.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Scenarios(APIView):
+
+    def get(self, request, format=None):
+        simulationparameters = SimulationParameters.objects.all()
+        serializer = SimulationParametersSerializer(simulationparameters, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = SimulationParametersSerializer(data=request.data)
+        if serializer.is_valid():
+
+            C = np.array(json.loads(serializer.data["corr"]))
+            A = np.zeros((4, 2))
+            A[:, 0] = C[0, 0]
+            A[:, 1] = C[0, 1]
+            alist = A.tolist()
+            json_str = json.dumps(alist)
+
+            return Response(json_str, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

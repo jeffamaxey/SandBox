@@ -1,0 +1,13 @@
+flake8===3.7.9
+ptvsd==4.3.2
+pytest-cov==2.8.1
+pytest-django==3.9.0
+pytest==5.4.1
+
+-r requirements.txt
+
+
+
+
+
+
