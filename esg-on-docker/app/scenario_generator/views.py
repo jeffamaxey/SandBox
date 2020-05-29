@@ -7,6 +7,8 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 
 """
 API
@@ -29,6 +31,20 @@ class SimulationParametersList(APIView):
         serializer = SimulationParametersSerializer(simulationparameters, many=True)
         return Response(serializer.data)
 
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                "name": openapi.Schema(type=openapi.TYPE_STRING),
+                "headers": openapi.Schema(type=openapi.TYPE_STRING),
+                "s0": openapi.Schema(type=openapi.TYPE_STRING),
+                "ar": openapi.Schema(type=openapi.TYPE_STRING),
+                "mu": openapi.Schema(type=openapi.TYPE_STRING),
+                "sigma": openapi.Schema(type=openapi.TYPE_STRING),
+                "corr": openapi.Schema(type=openapi.TYPE_STRING),
+            },
+        )
+    )
     def post(self, request, format=None):
         serializer = SimulationParametersSerializer(data=request.data)
         if serializer.is_valid():
