@@ -9,10 +9,9 @@ from .esg import EconomicScenarioGenerator
 
 """
 API
-$ curl -X POST http://127.0.0.1:8000/api/scenario_generator/simulationparameters/ -H 'Content-Type: application/json' -d '{"corr":"[[1.0, 0.032], [0.032, 1.0]]","headers":"['AK_SV', 'AK_WORLD']","s0":"[393.0, 28.5]","ar":"[0.0,1.0]","mu":"[0.2, 0.4]","sigma":"[0.16,0.1]","name":"esg"}'
+$ curl -X POST http://localhost:7071/api/scenarios/ -H 'Content-Type: application/json' -d '{"corr":"[[1.0, 0.032], [0.032, 1.0]]","headers":"['AK_SV', 'AK_WORLD']","s0":"[393.0, 28.5]","ar":"[0.0,1.0]","mu":"[0.2, 0.4]","sigma":"[0.16,0.1]","name":"esg"}'
 
-$ curl -X POST http://127.0.0.1:8000/scenario_generator/timeseries/ -H 'Content-Type: application/json'
--d @./returns.json
+$ curl -X POST https://holmens.azurewebsites.net/api/scenarios/ -H 'Content-Type: application/json' -d @./parameters.json -o szenarios.json
 """
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -31,14 +30,19 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         mu = np.array(json.loads(req_body.get('mu')))
         sigma = np.array(json.loads(req_body.get('sigma')))
 
-    N,t_steps, partition = 1, 12, 12
+    N,t_steps, partition = 10, 24, 12
     ESG = EconomicScenarioGenerator(s0, ar, mu, sigma, corr)
-    S, R = ESG.get_scenarios(N,t_steps, partition)
-    res = np.append(S, R, axis=1)
-    df = pd.DataFrame(res[0,:,:].T, columns=['S', 'R'])
+    S = ESG.get_scenarios(N,t_steps, partition)
+    
+    tmp = S.reshape(-1, S.shape[-1])
+    df = pd.DataFrame(S.reshape(-1, S.shape[-1]), columns=['S1', 'S2', 'R'])
+    df['N'] = np.nan
+    df['t'] = np.nan
+    df.N = df.index // t_steps
+    df.t = df.index % t_steps
 
     if not df.empty:
-        return func.HttpResponse(f"szenarios = {df.to_json()}")
+        return func.HttpResponse(df.to_csv(index=False))
     else:
         return func.HttpResponse(
              "Please pass a integer n on the query string or in the request body",

@@ -48,16 +48,16 @@ class EconomicScenarioGenerator(object):
         scaled_sigma = self.sigma / sqrt(partition)
 
         dt = 1 / partition
-        S = zeros((N, len(self.stock_id), steps))
-        R = zeros((N, len(self.rate_id), steps))
+        S = zeros((N, steps, len(self.stock_id)))
+        R = zeros((N, steps, len(self.rate_id)))
         for n in np.arange(N):
             dB, _ = self.brown(self.Corr, steps)
             S[n] = self.gbm(self.s0[self.stock_id], self.mu[self.stock_id], scaled_sigma[self.stock_id],
-                            dt, dB[self.stock_id, 1:])
+                            dt, dB[self.stock_id, 1:]).T
             R[n] = self.vasicek(self.s0[self.rate_id], self.a[self.rate_id], self.mu[self.rate_id],
-                                scaled_sigma[self.rate_id], dt, dB[self.rate_id, 1:])
-            # Kolla dB och B går i takt!
-        return (S, R)
+                                scaled_sigma[self.rate_id], dt, dB[self.rate_id, 1:]).T
+
+        return np.append(S, R, axis=2)
 
     # Brownian Motion
     def brown(self, corr, steps):
