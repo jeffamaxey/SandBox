@@ -400,3 +400,4 @@ __pycache__/
 rpn_as_fcn/.ionide/symbolCache.db
 symbolCache.*
 
+/bloomberg-api/BEAPSamples/credentials/credential.txt

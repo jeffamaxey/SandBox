@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+          font-family: Roboto, sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.5em;
+          color: rgb(51, 51, 51);
+          position: relative;
+          text-align: left;
+          text-size-adjust: 100%;
+
+          border-collapse: separate;
+          font-size: 14px;
+          width: 100%;
+          border-radius: 3px;
+          border-spacing: 0px;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+
+        h1 {
+            font-family: Montserrat, sans-serif;
+            font-weight: 400;
+            font-size: 1.85714em;
+            line-height: 1.6em;
+            color: rgb(50, 50, 159);
+            margin-top: 0px;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-family: Montserrat, sans-serif;
+            font-weight: 400;
+            font-size: 1.57143em;
+            line-height: 1.6em;
+            color: black;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        p {
+            font-family: Roboto, sans-serif;
+            font-weight: 400;
+            line-height: 1.5em;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>C# Sample Code</title>
+</head>
+<body>
+<h1>Sample Code</h1>
+<h2>Description</h2>
+<p>
+    Use these <span class="keyword">C#</span> samples to explore key
+    <span class="keyword">HAPI</span> capabilities.
+</p>
+<p>
+    You can adapt them for your application, with reference to this API
+    specification.
+</p>
+<h2>Prerequisites</h2>
+<p>
+    A solution file <span class="keyword">BEAPSamples.sln</span> is provided.
+    You can use it to setup a new project in Visual Studio or to build the
+    samples via command line using <span class="keyword">MSBuild</span>.
+    Before staring you need to install NuGet Packages this project depends on.
+    In Visual Studio do the following: Tools → NuGet Package Manager → Manage
+    NuGet Packages for Solution → Install or Update.
+</p>
+<p>
+    To choose a .NET implementation for a particular sample project modify
+    TargetFrameworks section in the corresponding .csproj file or use your IDE.
+    Supported .NET implementations:
+    <ul>
+        <li>.NET Core 2.1 or later</li>
+        <li>.NET Framework 4.5 or later</li>
+    </ul>
+</p>
+<h2>Proxy settings</h2>
+<p>
+
+    If your network environment requires the use of a proxy server
+    to access external Internet web sites, you need to configure
+    the HTTPS_PROXY environment variable.
+</p>
+<p>
+    If HTTPS proxy server requires no authentication set the
+    HTTPS_PROXY environment variable as follows:
+<br>
+<code>
+    HTTPS_PROXY=http://${proxy_host}:${proxy_port}
+</code>
+<br>
+    Where<br>
+    the "${proxy_host}" should be replaced with proxy host address,<br>
+    the "${proxy_port}" should be replaced with proxy port number.
+</p>
+<br>
+<p>
+    If HTTPS proxy server requires basic (username/password)
+    authentication set the HTTPS_PROXY environment
+    variable as follows:
+<br>
+<code>
+    HTTPS_PROXY=http://${username}:${password}@${proxy_host}:${proxy_port}
+</code>
+<br>
+    Where<br>
+    the "${proxy_host}" should be replaced with proxy host address,<br>
+    the "${proxy_port}" should be replaced with proxy port number,<br>
+    the "${username}" should be replaced with proxy's username,<br>
+    and the ${password} should be replaced with proxy's password.
+</p>
+<h2>Shared files (not runnable)</h2>
+<table>
+    <tr>
+        <th>Filename</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><a href="BEAPSamples/BeapAuth.cs">BeapAuth.cs</a></td>
+        <td>
+            Supplementary authorization library to generate a
+            <a href="https://jwt.io/">JSON Web Token (JWT)</a> for each request,
+            and sign it using the credentials provided
+        </td>
+    </tr>
+    <tr>
+        <td><a href="BEAPSamples/SseClient.cs">SseClient.cs</a></td>
+        <td>
+            Supplementary library to facilitate reading
+            <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html">
+            Server-Sent Event
+            </a> push notifications
+        </td>
+    </tr>
+</table>
+<h2>Connectivity test</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Source code file</th>
+    </tr>
+    <tr>
+        <td>Connectivity Test</td>
+        <td>
+            Basic connectivity test to verify credentials,
+            <span class="keyword">IP</span> address allowlist authorization, and
+            end-to-end connectivity
+        </td>
+        <td><a href="SampleConnect/SampleConnect.cs">SampleConnect.cs</a></td>
+    </tr>
+</table>
+<h2>Handling Bulk and Custom Datasets</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Source code file</th>
+    </tr>
+    <tr>
+        <td>Dataset Download</td>
+        <td>
+            Demonstrates how to download a dataset's distribution sample
+            file using <span class="keyword">GZIP encoding</span>(sample
+            downloads file using <span class="keyword">GZIP</span> encoding -
+            it is recommended to reduce the time of download process)
+        </td>
+        <td>
+            <a href="SampleDatasetDownload/SampleDatasetDownload.cs">
+                SampleDatasetDownload.cs
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Dataset Access</td>
+        <td>
+            Uses <span class="keyword">BEAP</span> metadata to determine if you
+            have access to particular dataset snapshots or distributions
+            (depending upon account credentials)
+        </td>
+        <td>
+            <a href="SampleDatasetAccess/SampleDatasetAccess.cs">
+                SampleDatasetAccess.cs
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Dataset History Depth</td>
+        <td>
+            Uses the snapshot's metadata to determine the depth of history for
+            any given dataset
+        </td>
+        <td>
+            <a href="SampleHistoryDepth/SampleHistoryDepth.cs">
+                SampleHistoryDepth.cs
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Dataset History Download</td>
+        <td>
+            Downloads a subset of the history of snapshots for a given dataset
+            (this sample uses snapshot metadata and <span class="keyword">GZIP
+            </span> for downloads)
+        </td>
+        <td>
+            <a href="SampleHistoryDownload/SampleHistoryDownload.cs">
+                SampleHistoryDownload.cs
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Notification Handling</td>
+        <td>
+            Listens to "heartbeat" event, and then simulates and responds to a
+            <span class="keyword">BEAP</span>
+            <span class="keyword">DistributionPublishedActivity</span>
+            notification
+        </td>
+        <td>
+            <a href="SampleNotificationProcessor/SampleNotificationProcessor.cs">
+                SampleNotificationProcessor.cs
+            </a>
+        </td>
+    </tr>
+</table>
+<h2>Requesting Custom Datasets</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Source code file</th>
+    </tr>
+    <tr>
+        <td>Custom Request from Scratch</td>
+        <td>Creates a new custom dataset request from scratch,
+            and schedules it for execution using a customizable schedule
+            (so-called <span class="keyword">trigger</span>)
+        </td>
+        <td>
+            <a href="SampleRequestFromScratch/SampleRequestFromScratch.cs">
+                SampleRequestFromScratch.cs
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Custom Request from Resources</td>
+        <td>
+            Creates a new custom dataset request using a Bloomberg defined
+            <span class="keyword">universe</span> (pre-defined set of
+            securities) and <span class="keyword"> trigger</span>(pre-defined
+            schedule).
+        </td>
+        <td>
+            <a href="SampleRequestFromResources/SampleRequestFromResources.cs">
+                SampleRequestFromResources.cs
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>Custom Request with Security Level Overrides</td>
+        <td>
+            Creates a new custom dataset request from scratch to demonstrate
+            security-level overrides in a <span class="keyword">universe</span>
+            definition. In this sample, adjusting <span class="keyword">
+            eqyFundCrncy</span> causes the value of
+            <span class="keyword">crncyAdjPxLast</span> to be reported to the
+            nominated currency. An example of a settlement date override is
+            also provided.
+        </td>
+        <td>
+            <a href="SampleSecurityOverrides/SampleSecurityOverrides.cs">
+                SampleSecurityOverrides.cs
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>History request</td>
+        <td>
+            Creates a new custom dataset request of historical type to
+            demonstrate how requests of historical type are created and
+            how the reply looks like.
+        </td>
+        <td>
+            <a href="SampleHistoryDataRequest/SampleHistoryDataRequest.cs">
+                SampleHistoryRequest.cs
+            </a>
+        </td>
+    </tr>
+</table>
+<h2>Troubleshooting</h2>
+<h3>Diagnostics.cs</h3>
+<p>
+    In case of having issues with getting response from HAPI server you can use
+    Diagnostics.cs module in order to get additional information about possible
+    issues, if any.<br>
+    You can use <code>Diagnostics.run</code> method as a part of your
+    application or as part of any sample code(similarly to
+    <code>SampleConnect</code> sample - add the Diagnostics.cs module to the
+    project and use it to handle exceptions).</p>
+<h3>Network tracing</h3>
+<p>
+    You can use network tracing provided by C# framework in order to
+    inspect interaction with HAPI server.<br>
+    The way it should be done depends on the type of framework you are using.
+</p>
+<p>
+    For <b>.Net Framework</b>: network tracing is already configured for
+    <code>SampleConnect</code> project. You can run it in <i>DEBUG</i> mode
+    and collected network trace will be located in corresponding <i>bin</i>
+    directory (file called 'diagnostics.log'). To enable network tracing
+    the <i>app.config</i> file is used in <code>SampleConnect</code>
+    project.<br>
+    The project must be compiled in <i>>DEBUG</i> mode.
+    You can try this sample and if it works (i.e. the log file is
+    created) - you can use the same approach in other samples.
+</p>
+<p>
+    For <b>.Net Core</b>: network tracing is collected using <i>logman</i>
+    utility (for Windows).<br>
+    You can run the following commands in order to get the trace file:<br>
+    Create providers.txt file (in any directory) with the following
+    contents:<br>
+    <code>
+        "{bdd9a83e-1929-5482-0d73-2fe5e1c0e16d}"<br>
+        "{b71555b1-9566-5ce3-27f5-98405bbfde9d}"<br>
+        "{5f302add-3825-520e-8fa0-627b206e2e7e}"<br>
+        "{3763dc7e-7046-5576-9041-5616e21cc2cf}"<br>
+        "{066c0e27-a02d-5a98-9a4d-078cc3b1a896}"<br>
+    </code><br>
+    and run the logman utility to collect binary trace file:<br>
+    <code>
+        logman -start SocketTrace -o trace.etl -pf providers.txt  -ets<br>
+        run you code here<br>
+        logman -stop SocketTrace -ets<br>
+    </code><br>
+    then you can open the created <i>trace.etl</i> file in <i>PrefView</i> utility
+    in order to visualise the debug trace.<br> Reading this trace file is way
+    more complicated than reading the trace files for <i>.Net Framework</i>
+    so it's recommended to switch to .Net Framework and follow the
+    corresponding approach (described earlier, using app.config file) to
+    collect network tracing.
+</p>
+<p style="border: 3px solid #000000; text-align: center; display: inline-block; padding: 5px;">
+    Samples version: 2.1.1
+</p>
+</body>
+</html>
