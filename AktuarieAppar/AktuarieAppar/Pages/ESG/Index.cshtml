@@ -1,0 +1,36 @@
+﻿@page
+@model AktuarieAppar.Pages.ESG.IndexModel
+@{
+    ViewData["Title"] = "ESG";
+}
+
+<h3>Brownian Noise</h3>
+<p>
+    Generates standard Normal scenarios, from correlation matrix
+</p>
+
+@Model.jparams
+
+<br />
+
+<form method="GET">
+    <p>
+        params.json: <input type="text" size="90" asp-for="jparams" name="jparams" />
+        <input type="hidden" value="true" asp-for="download" />
+        <button type="submit" asp-page-handler="DownloadFile" style="width:90px" class="cancel">
+            Download
+        </button>
+    </p>
+    <p>* may take a while...</p>
+</form>
+
+
+
+<h3>
+    DISCLAIMER: Otestade appar under utveckling
+    <span style="color:Tomato;"> ABSOLUTELY NO WARRANTY</span> ¯\_(ツ)_/¯
+</h3>
+<h3>TODO</h3>
+
+<p>Se <a class="nav-link text-dark" asp-area="" asp-page="/About">About</a>
+    och GitHub issue <a href="https://github.com/amf-se/AktuarieAppar/issues/17">#17</a></p>

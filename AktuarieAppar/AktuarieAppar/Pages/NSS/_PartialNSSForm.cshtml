@@ -1,0 +1,89 @@
+﻿@model AktuarieAppar.Pages.NSS.IndexModel
+    <form method="get">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>
+                        NSS
+                    </th>
+                    <th>
+                        Tjänste
+                    </th>
+                    <th>
+                        Privat
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NssParametrarInitTJ.Betha0)
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitTJ.Betha0" asp-for="NssParametrarInitTJ.Betha0" />
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitPR.Betha0" asp-for="NssParametrarInitPR.Betha0" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NssParametrarInitTJ.Betha1)
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitTJ.Betha1" asp-for="NssParametrarInitTJ.Betha1" />
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitPR.Betha1" asp-for="NssParametrarInitPR.Betha1" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NssParametrarInitTJ.Betha2)
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitTJ.Betha2" asp-for="NssParametrarInitTJ.Betha2" />
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitPR.Betha2" asp-for="NssParametrarInitPR.Betha2" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NssParametrarInitTJ.Betha3)
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitTJ.Betha3" asp-for="NssParametrarInitTJ.Betha3" />
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitPR.Betha3" asp-for="NssParametrarInitPR.Betha3" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NssParametrarInitTJ.Tao0)
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitTJ.Tao0" asp-for="NssParametrarInitTJ.Tao0" />
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitPR.Tao0" asp-for="NssParametrarInitPR.Tao0" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.NssParametrarInitTJ.Tao1)
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitTJ.Tao1" asp-for="NssParametrarInitTJ.Tao1" />
+                    </td>
+                    <td>
+                        <input type="text" size="9" value="@Model.NssParametrarInitPR.Tao1" asp-for="NssParametrarInitPR.Tao1" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" value=@Model.ValueDate asp-for="ValueDate" />
+        <input type="hidden" value="InitialGuess" asp-for="NssParametrarInitTJ.Grunder" />
+        <button type="submit">Räkna om</button>
+    </form>

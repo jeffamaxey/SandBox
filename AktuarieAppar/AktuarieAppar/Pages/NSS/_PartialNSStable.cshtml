@@ -1,0 +1,106 @@
+﻿@model AktuarieAppar.Pages.NSS.IndexModel
+    <table border="1">
+        <thead>
+            <tr>
+                <th>
+                    NSS
+                </th>
+                <th>
+                    Tjänste
+                </th>
+                <th>
+                    Privat
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.NssParametrarTJ.Betha0)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarTJ.Betha0)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarPR.Betha0)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.NssParametrarTJ.Betha1)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarTJ.Betha1)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarPR.Betha1)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.NssParametrarTJ.Betha2)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarTJ.Betha2)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarPR.Betha2)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.NssParametrarTJ.Betha3)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarTJ.Betha3)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarPR.Betha3)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.NssParametrarTJ.Tao0)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarTJ.Tao0)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarPR.Tao0)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.NssParametrarTJ.Tao1)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarTJ.Tao1)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NssParametrarPR.Tao1)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    MSE NSS
+                </td>
+                <td>
+                    @Model.MeanSquareErrorNSSTJ
+                </td>
+                <td>
+                    @Model.MeanSquareErrorNSSPR
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    MSE DF
+                </td>
+                <td>
+                    @Model.MeanSquareErrorDFTJ
+                </td>
+                <td>
+                    @Model.MeanSquareErrorDFPR
+                </td>
+            </tr>
+        </tbody>
+    </table>

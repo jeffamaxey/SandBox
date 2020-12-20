@@ -1,0 +1,115 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <p>
+        <img src="Architecture.jpg" alt="Map" width="550" height="500">
+    </p>
+
+    <p>ASP.NET 5.0.1</p>
+    Logging: Serilog 2.8.0,
+    Unit tests: NUnit 3.12.0,
+    Versionshantering: <a href="https://github.com/amf-se/AktuarieAppar.git"> https://github.com/amf-se/AktuarieAppar.git</a>
+    <p>Fritt fram ändra/lägga till... Skapa egen branch :|</p>
+
+    <br />
+
+    <h3>NSS - Premiereservränta</h3>
+    <p>
+        Beräknar diskonteringsräntor (FFFS 2013:23) från swapar och passar NSS-parametrar till dem.
+    </p>
+    <p>Skriver ned resultatet till Laban</p>
+    <p>
+        DW_Martar.amf.vMart_Simcorp_Dimension_Swaps via
+        DW_Aktuarie.dbo.vSwap
+    </p>
+
+    <p>Kan köras i sumulerings-mode med möjlighet ändra parametrar och utan koppling till Laban.</p>
+
+
+
+    <h3>PGR - Garantiräntor</h3>
+    <p>DW_Martar.amf.vMart_Simcorp_Dimension_Statsobligationer</p>
+
+    <p>
+        Bolaget tillämpar olika ränteantaganden inom de olika återbäringskollektiven.
+    </p>
+    <p>
+        Återbäringskollektiv 1 Ränteantagandet bestäms med utgångspunkt i 60 procent av gällande marknadsräntor för likvida svenska statsobligationer, med hänsyn till åtagandenas löptid.
+        Räntan omprövas varje månad och ändras om 60 procent av såväl den aktuella marknadsräntan som
+        den genomsnittliga marknadsräntan (beräknat för de föregående tre månaderna) avviker med mer än
+        0,25 procentenheter från gällande ränta.
+    </p>
+    <p>Återbäringskollektiv 2 Bolaget tillämpar en ränta på 0 procent efter avdrag för skatt och driftskostnader.</p>
+    <p>
+        Återbäringskollektiv 3 Vissa försäkringar inom återbäringskollektiv 3 har en avtalad premiegaranti (s.k. garantikontroll) som syftar till att säkerställa att inbetalda premier, eller andel av inbetalda premier, samt inflyttat kapital, eller andel av inflyttat kapital, garanteras i form av periodisk utbetalning.
+        Vid beräkning av förmåner som omfattas av premiegarantin tillämpas en garantiränta på 0 procent efter avdrag för skatt och driftskostnader.
+        Ränteantagandet för övriga förmåner bestäms med utgångspunkt i en tredjedel av gällande marknadsräntor för likvida svenska statsobligationer med hänsyn till åtagandenas löptid.
+        Räntan ändras om en tredjedel av såväl den aktuella marknadsräntan som den genomsnittliga marknadsräntan (beräknat för de föregående tre månaderna) avviker med mer än 0,25 procentenheter från gällande ränta.
+    </p>
+
+    <h3>TAT - TotalAvkastningsTabell</h3>
+    <p>
+        Laddas då Kapitalförvaltning kör rapport TAT. Om ej laddad, maila: <a href="mailto:DWSupport@amf.se">DWSupport@amf.se</a><br />
+        och be dem ladda DW_Martar.amf.vTotalAvkastning
+    </p>
+    <p>
+        AktuarieAppar använder vy DW_Martar.amf.vTotalAvkastning och tabell
+        DW_Aktuarie.dbo.PeriodAvkastning
+    </p>
+    <p>
+        Beräknade värden sparas i DW_Aktuarie.dbo.PeriodAvkastning med INSERT-knappen
+        Värden från föregående månadsslut används för att räkna ut periodavkastningen.
+    </p>
+
+    <h2>Påbörjat</h2>
+
+    <h3>ESG - Economic Scenario Generator</h3>
+    <img src="azure-functions.png" width="50" height="50" vertical-align="middle">
+    <p>
+        Testar Azure Functions
+    </p>
+    <p>
+        numpy==1.18.5
+        pandas==1.0.4
+        scipy==1.4.1
+    </p>
+
+    <p>$ curl -X POST https://holmens.azurewebsites.net/api/brown -H 'Content-Type: application/json' -d '{"corr":"[[1.0, 0.032], [0.032, 1.0]]","n":10,"t":12}'</p>
+
+    <p>
+        Genererar korrelerat 'brus' som kan användas som dB i processerna nedan
+    </p>
+    \(dS = \mu S dt + \sigma S dB \)
+    och räntorna
+    <p>
+        \(dr = a(\mu - r) dt + \sigma dB \)
+    </p>
+    <p>
+        Hur detta går till, från ax till limpa, visas i GitHub
+        <a href="https://github.com/amf-se/EconomicScenarioGenerator">amf-se</a> eller i
+        <a href="https://github.com/holmen1/economic-scenario-generator">holmen1</a>'s publika
+    </p>
+
+    <p>
+        Källkoden till molnfunktionen hittas här:
+        <a href="https://github.com/holmen1/SandBox/tree/master/esg_as_fcn">esg_as_fcn</a>
+    </p>
+
+    <h3>RUT</h3>
+    Se GitHub issue <a href="https://github.com/amf-se/AktuarieAppar/issues/15">#15</a>
+</body>
+</html>

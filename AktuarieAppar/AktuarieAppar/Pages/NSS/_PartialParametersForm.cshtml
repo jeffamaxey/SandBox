@@ -1,0 +1,13 @@
+﻿@model AktuarieAppar.Pages.NSS.IndexModel
+<form method="get">
+    <p>
+        <input type="hidden" value="simulering" name="purpose" />
+        <input type="hidden" value=@Model.ValueDate asp-for="ValueDate" />
+        UFR: <input type="text" size="3" value="@Model.ufr" asp-for="ufr" />
+        Räntegolv: <input type="text" size="1" value="@Model.golv" asp-for="golv" />
+        <br />
+        Kreditavdrag Tjänste:  <input type="text" size="4" value="@Model.kreditriskTJ" asp-for="kreditriskTJ" />
+        Privat: <input type="text" size="4" value="@Model.kreditriskPR" asp-for="kreditriskPR" />
+        <button type="submit">Räkna om</button>
+    </p>
+</form>
