@@ -16,3 +16,6 @@ Where it all begins
 
 - ## AktuarieAppar/
     Actuarial utilies framework using ASP.NET 5.0
+
+- ## chainladder-tutorial/
+    First look at https://chainladder-python.readthedocs.io/en/latest/

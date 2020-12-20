@@ -1,0 +1,10 @@
+seaborn
+nbsphinx
+matplotlib
+sklearn
+pandas
+numpy
+numpydoc
+sphinx_gallery
+joblib
+numba==0.49
