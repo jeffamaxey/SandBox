@@ -13,9 +13,3 @@ Where it all begins
 
 - ## rpn_as_fcn/
     Azure Function interface to a Polish calculator using F#
-
-- ## AktuarieAppar/
-    Actuarial utilies framework using ASP.NET 5.0
-
-- ## chainladder-tutorial/
-    First look at https://chainladder-python.readthedocs.io/en/latest/
