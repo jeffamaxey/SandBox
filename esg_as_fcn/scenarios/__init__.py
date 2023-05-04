@@ -33,7 +33,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     N,t_steps, partition = 10, 24, 12
     ESG = EconomicScenarioGenerator(s0, ar, mu, sigma, corr)
     S = ESG.get_scenarios(N,t_steps, partition)
-    
+
     tmp = S.reshape(-1, S.shape[-1])
     df = pd.DataFrame(S.reshape(-1, S.shape[-1]), columns=['S1', 'S2', 'R'])
     df['N'] = np.nan
@@ -41,10 +41,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     df.N = df.index // t_steps
     df.t = df.index % t_steps
 
-    if not df.empty:
-        return func.HttpResponse(df.to_csv(index=False))
-    else:
-        return func.HttpResponse(
-             "Please pass a integer n on the query string or in the request body",
-             status_code=400
+    return (
+        func.HttpResponse(
+            "Please pass a integer n on the query string or in the request body",
+            status_code=400,
         )
+        if df.empty
+        else func.HttpResponse(df.to_csv(index=False))
+    )

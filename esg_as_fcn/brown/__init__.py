@@ -25,7 +25,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Brownian increments ~ N(0, corr^0.5)
     NG = NoiceGenerator()
     dB = NG.brown_steps(corr, N * T)
-    
+
     # Index with Pandas
     df = pd.DataFrame(dB.T)
     df['N'] = np.nan
@@ -33,10 +33,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     df.N = df.index // T
     df.t = df.index % T
 
-    if not df.empty:
-        r = func.HttpResponse(df.to_csv(index=False))
-        return func.HttpResponse(df.to_csv(index=False))
-    else:
+    if df.empty:
         return func.HttpResponse(
              status_code=400
         )
+    r = func.HttpResponse(df.to_csv(index=False))
+    return func.HttpResponse(df.to_csv(index=False))
