@@ -35,9 +35,7 @@ class NoiceGenerator(object):
 
         # C ~ U(0,1)
         C = self.copula(corr, steps)
-        dB = norm.ppf(C)
-
-        return dB
+        return norm.ppf(C)
 
     def copula(self, Corr, n):
         """
@@ -55,9 +53,7 @@ class NoiceGenerator(object):
 
         Z = random.standard_normal(n * rank).reshape(-1, n)
         X = B @ Z
-        C = norm.cdf(X)
-
-        return C
+        return norm.cdf(X)
 
     def left_factorize(self, A, tol=1e-6):
         """
@@ -70,6 +66,4 @@ class NoiceGenerator(object):
         """
         U, Sigma, _ = la.svd(A)
         rank = max(where(Sigma > tol))
-        B = U[:, :rank + 1] @ sqrt(diag(Sigma[:rank + 1]))
-
-        return B
+        return U[:, :rank + 1] @ sqrt(diag(Sigma[:rank + 1]))

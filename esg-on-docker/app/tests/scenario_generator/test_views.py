@@ -78,7 +78,7 @@ def test_get_single_simulationparameters(client, add_simulationparameters):
 
 
 def test_get_single_simulationparameters_incorrect_id(client):
-    resp = client.get(f"/api/scenario_generator/simulationparameters/foo/")
+    resp = client.get("/api/scenario_generator/simulationparameters/foo/")
     assert resp.status_code == 404
 
 
@@ -108,7 +108,7 @@ def test_remove_simulationparameters(client, add_simulationparameters):
 
 @pytest.mark.django_db
 def test_remove_simulationparameters_incorrect_id(client):
-    resp = client.delete(f"/api/scenario_generator/simulationparameters/99/")
+    resp = client.delete("/api/scenario_generator/simulationparameters/99/")
     assert resp.status_code == 404
 
 
@@ -149,7 +149,7 @@ def test_update_simulationparameters(client, add_simulationparameters):
 
 @pytest.mark.django_db
 def test_update_simulationparameters_incorrect_id(client):
-    resp = client.put(f"/api/scenario_generator/simulationparameters/99/")
+    resp = client.put("/api/scenario_generator/simulationparameters/99/")
     assert resp.status_code == 404
 
 

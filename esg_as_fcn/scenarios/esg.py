@@ -136,9 +136,7 @@ class EconomicScenarioGenerator(object):
 
         # C ~ U(0,1)
         C = self.copula(corr, steps)
-        dB = norm.ppf(C)
-
-        return dB
+        return norm.ppf(C)
 
     def copula(self, Corr, n):
         """
@@ -158,9 +156,7 @@ class EconomicScenarioGenerator(object):
 
         Z = np.random.standard_normal(n * r).reshape(-1, n)
         X = dot(B, Z)
-        C = norm.cdf(X)
-
-        return C
+        return norm.cdf(X)
 
     # Singular Value Decomposition
     def left_factorize(self, A, tol=1e-6):
@@ -175,9 +171,7 @@ class EconomicScenarioGenerator(object):
         """
         U, Sigma, _ = la.svd(A)
         r = max(np.where(Sigma > tol))  # rank
-        B = dot(U[:, :r + 1], sqrt(diag(Sigma[:r + 1])))
-
-        return B
+        return dot(U[:, :r + 1], sqrt(diag(Sigma[:r + 1])))
 
     def cov2corr(self, cov):
         """
@@ -187,9 +181,7 @@ class EconomicScenarioGenerator(object):
         - cov: Covariance matrix
         """
         d = diag(cov)
-        Corr = cov / sqrt(outer(d, d))
-
-        return Corr
+        return cov / sqrt(outer(d, d))
 
     # ----------- not used, kept for tests ---------
 
@@ -206,6 +198,4 @@ class EconomicScenarioGenerator(object):
 
         drift = outer(mu - 0.5 * sdev ** 2, t)
         diffusion = dot(diag(sdev), B)
-        S = dot(diag(s0), exp(drift + diffusion))
-
-        return S
+        return dot(diag(s0), exp(drift + diffusion))
